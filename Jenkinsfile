@@ -13,5 +13,25 @@ pipeline {
       }
     }
 
+    stage('restore') {
+      steps {
+        sh 'sh "dotnet restore"'
+      }
+    }
+
+    stage('build') {
+      steps {
+        sh 'sh "dotnet build"'
+      }
+    }
+
+    stage('test') {
+      steps {
+        sh '''           dir("simple-dotnet-maven-app"){
+                sh "dotnet test"
+            }'''
+        }
+      }
+
+    }
   }
-}

@@ -16,7 +16,7 @@ pipeline {
     stage('Restore') {
       steps {
         dir(path: 'simple-net-app') {
-          sh 'dotnet restore  ${workspace}/weatherdataservice-2_master/weatherdataservice'
+          sh 'dotnet restore  ${workspace}/weather_master/weatherdataservice'
         }
 
       }
@@ -25,7 +25,7 @@ pipeline {
     stage('Build') {
       steps {
         dir(path: 'simple-net-app') {
-          sh 'dotnet build  /var/jenkins_home/workspace/weatherdataservice-2_master/weatherdataservice'
+          sh 'dotnet build  /var/jenkins_home/workspace/weather_master/weatherdataservice'
         }
 
       }
@@ -34,7 +34,7 @@ pipeline {
     stage('Test') {
       steps {
         dir(path: 'simple-java-maven-app') {
-          sh 'dotnet test /var/jenkins_home/workspace/weatherdataservice-2_master/weatherdataservice'
+          sh 'dotnet test /var/jenkins_home/workspace/weather_master/weatherdataservice'
         }
 
       }

@@ -16,7 +16,7 @@ pipeline {
     stage('Restore') {
       steps {
         dir(path: 'simple-net-app') {
-          sh 'dotnet restore  ${workspace}/weatherdataservice_master/weatherdataservice'
+          sh 'dotnet restore  /var/jenkins_home/workspace/weatherdataservice_master/weatherdataservice'
         }
 
       }

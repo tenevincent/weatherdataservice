@@ -25,7 +25,7 @@ pipeline {
     stage('Build') {
       steps {
         dir(path: 'simple-net-app') {
-          sh 'dotnet build  ${workspace}/weatherdataservice_master/weatherdataservice'
+          sh 'dotnet build  ${WORKSPACE}/weatherdataservice_master/weatherdataservice'
         }
 
       }
@@ -34,7 +34,7 @@ pipeline {
     stage('Test') {
       steps {
         dir(path: 'simple-java-maven-app') {
-          sh 'dotnet test ${workspace}/weatherdataservice_master/weatherdataservice'
+          sh 'dotnet test ${WORKSPACE}/weatherdataservice_master/weatherdataservice'
         }
 
       }

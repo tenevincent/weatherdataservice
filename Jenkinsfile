@@ -1,37 +1,47 @@
 pipeline {
-  agent any
+
+  agent any 
+
   stages {
-    stage('Clean workspace') {
-      steps {
-        sh ' cleanWs()'
-      }
-    }
 
-    stage('Clone  Repo') {
-      steps {
-        sh 'sh "git clone https://github.com/tenevincent/weatherdataservice.git"'
-      }
-    }
+     stage("Clean workspace") {         
+         steps {
+            cleanWs()
+         }
+     }
+     
+     stage("Clone  Repo") {         
+         steps {
+            sh "git clone https://github.com/tenevincent/weatherdataservice.git"
+         }
+     }
 
-    stage('restore') {
-      steps {
-        sh 'sh "dotnet restore"'
-      }
-    }
+     stage("restore") {         
+         steps {
+            dir("simple-net-app"){
+                sh "dotnet restore"
+            }
+         }
+     }
+	 
+	      stage("build") {         
+         steps {
+            dir("simple-net-app"){
+                sh "dotnet build"
+            }
+         }
+     }
+	 
 
-    stage('build') {
-      steps {
-        sh 'sh "dotnet build"'
-      }
-    }
-
-    stage('test') {
-      steps {
-        sh '''           dir("simple-dotnet-maven-app"){
+     stage("Test") {         
+         steps {
+            dir("simple-dotnet-maven-app"){
                 sh "dotnet test"
-            }'''
-        }
-      }
+            }
+         }
+     }
 
-    }
+
   }
+}
+

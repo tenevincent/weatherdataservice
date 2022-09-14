@@ -16,27 +16,27 @@ pipeline {
          }
      }
 
-     stage("restore") {         
+     stage("Restore") {         
          steps {
             dir("simple-net-app"){
-                sh "dotnet restore"
+                sh "dotnet restore  /var/jenkins_home/workspace/weatherdataservice-2_master/weatherdataservice/WeatherDataServiceApp.sln"
             }
          }
      }
-	 
-	      stage("build") {         
+
+   stage("Build") {         
          steps {
             dir("simple-net-app"){
-                sh "dotnet build"
+                sh "dotnet build  /var/jenkins_home/workspace/weatherdataservice-2_master/weatherdataservice/WeatherDataServiceApp.sln"
             }
          }
      }
-	 
+
 
      stage("Test") {         
          steps {
-            dir("simple-dotnet-maven-app"){
-                sh "dotnet test"
+            dir("simple-java-maven-app"){
+                sh "dotnet test /var/jenkins_home/workspace/weatherdataservice-2_master/weatherdataservice/WeatherDataServiceApp.sln"
             }
          }
      }
